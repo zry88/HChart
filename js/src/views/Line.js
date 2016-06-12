@@ -1,10 +1,9 @@
 define([
     'src/core/View',
-    // 'src/views/BarView',
 ], function(BaseView) {
     var App = BaseView.extend({
-        initialize: function(option) {
-            
+        initialize: function(option, context) {
+            this.parent(option, context);
         },
         draw: function() {
             // HF.stage.update();
