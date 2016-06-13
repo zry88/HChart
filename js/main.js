@@ -15,9 +15,10 @@ require(['src/HChart'], function(HChart) {
     var hchart = new HChart({
         canvasEl: 'testCanvas',
         name: '柱形图',
+        type: 'bar',
         scale: {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
-            data: []
+            // data: [10, 30, 50, 70, 90, 110, 130]
         },
         legend: {
             orient: 'vertical',
@@ -27,19 +28,29 @@ require(['src/HChart'], function(HChart) {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
         },
-        series: [{
-            type: 'bar',
-            style: {
+        style: {
+            radius: ['50%', '70%'],
+        },
+        data: [
+            { value: 335, name: '直接访问' },
+            { value: 310, name: '邮件营销' },
+            { value: 234, name: '联盟广告' },
+            { value: 135, name: '视频广告' },
+            { value: 1548, name: '搜索引擎' }
+        ],
+        // mix: [{
+        //     type: 'bar',
+        //     style: {
 
-            },
-            data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
-            ]
-        }],
+        //     },
+        //     data: [
+        //         { value: 335, name: '直接访问' },
+        //         { value: 310, name: '邮件营销' },
+        //         { value: 234, name: '联盟广告' },
+        //         { value: 135, name: '视频广告' },
+        //         { value: 1548, name: '搜索引擎' }
+        //     ]
+        // }],
     });
     // var hchart2 = new HChart({
     //     canvasEl: 'testCanvas2',

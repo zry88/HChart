@@ -14,34 +14,54 @@ define([
             'bar': BarController,
         },
         initialize: function(option) {
-            var options = {
-                canvasEl: '', //画布dom
-                fps: 60, //帧速
-                type: 'line',
-                scale: {},
-                tooltip: {}
+            var that = this;
+            this.options = {
+                canvasEl: '',   //画布id
+                fps: 60,        //帧速
+                name: '',       //图表名称
+                type: '',       //图表类型
+                scale: {},      //坐标尺
+                legend: {},     //图例
+                tooltip: {},    //提示框
+                style: {},      //风格样式
+                data: [],       //数据
+                mix: undefined //混合图表参数
             };
-            if (option) _.extend(options, option);
-            if (!this.controllers[options.type]) {
-                debug.error('没有此类型图表');
-                return;
-            }
+            if (option) _.extend(this.options, option);
+            // 创建画布
             this.root = this.create({
-                id: options.canvasEl,
+                id: this.options.canvasEl,
                 type: 'view',
                 class: RootView,
-                options: options
+                options: this.options
             });
-            this.createController(options);
+            if (this.options.mix) {
+                // 混合图表
+                _.each(this.options.mix, function(val, index) {
+                    that.createController(val);
+                });
+            } else {
+                this.createController(this.options);
+            }
+            console.warn(!parseInt('aaa'));
         },
+        // 实例化控制器
         createController: function(option) {
-            this.create({
-            	id: option.type,
-            	type: 'controller',
-                class: this.controllers[option.type],
-                options: option
-            });
+            var theType = option.type;
+            if (theType) {
+                if (!this.controllers[theType]) {
+                    debug.error('没有此类型图表');
+                    return;
+                }
+                this.create({
+                    id: theType,
+                    type: 'controller',
+                    class: this.controllers[theType],
+                    options: option
+                });
+            }
         },
+
     });
     return App;
 });

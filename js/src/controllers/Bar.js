@@ -6,7 +6,6 @@ define([
         initialize: function(option, context) {
             this.parent(option, context);
             HF.Events.trigger('view:root');
-            // console.warn('1111111');
             // this.createElement();
         },
         createElement: function() {
