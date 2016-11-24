@@ -43,7 +43,7 @@ define([
             } else {
                 this.createController(this.options);
             }
-            console.warn(!parseInt('aaa'));
+            // console.warn(!parseInt('aaa'));
         },
         // 实例化控制器
         createController: function(option) {
